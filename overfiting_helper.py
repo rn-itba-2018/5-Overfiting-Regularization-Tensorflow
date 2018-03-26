@@ -89,13 +89,13 @@ def get_parameters_polinomial_model_linear(X,Y, N = 1, normalize = False, fit_in
     X, means, stds = get_matrix_polinomial_model(X,Y, N = N, normalize = normalize)
     clf = linear_model.Ridge(alpha = lamb, normalize= normalize, fit_intercept=fit_intercept)
     if (fit_intercept):
-        clf.fit(X[:,1:], Y)
+        clf.fit(X[1:,:], Y)
     else:
         clf.fit(X, Y)
     coefs = clf.coef_
     if coefs.shape == ():
         coefs = coefs.reshape(1,1)
-    return coefs, clf.predict(X) , means, stds
+    return coefs, clf.predict(X), means, stds
 
 def get_parameters_polinomial_model(X,Y, lamb = 0, N = 1, normalize = False, fit_intercept=True):
     X_all, means, stds = get_matrix_polinomial_model(X,Y, N = N, normalize = normalize)
